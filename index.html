@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Účetnictví F&amp;G Vsetín</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Účetní kancelář ve Vsetíně. Sylva Gehrová a Nikola Frýdlová vedou účetnictví, daňovou evidenci a mzdy pro firmy, OSVČ a spolky. Doklady si vyzvedneme, s úřady jednáme za vás.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap">
+<style>
+/* Layout: left-aligned editorial one-pager, floating pill nav, glass cards on a cool pearl ground; brand navy + logo cyan, honey only for small warm details */
+:root{
+  --bg:#faf6f0; --bg2:#f1e7da; --surface:rgba(255,252,247,.78); --solid:#fffdf9;
+  --ink:#1c2340; --text:#554e49; --soft:#8b8076; --line:rgba(70,45,20,.10);
+  --brand:#2c4c94; --sky:#b86e2c; --warm:#c47a34; --warm-bg:#f7e8d4;
+  --dark1:#2b1f17; --dark2:#5b3b22; --on-dark:#fbf3ea; --on-dark-soft:#dcc8b3;
+  --glow:rgba(214,150,80,.20); --shadow:0 24px 60px -28px rgba(70,45,20,.30);
+  --f-sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --r-card:26px; --max:1180px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mark:not(.light){opacity:.11}:root:not([data-theme="light"]){
+  --bg:#14110e; --bg2:#1e1813; --surface:rgba(44,36,29,.62); --solid:#231d17;
+  --ink:#f7efe5; --text:#cfc1b2; --soft:#a09284; --line:rgba(255,235,210,.09);
+  --brand:#a9bcef; --sky:#e7a862; --warm:#eeb06a; --warm-bg:rgba(238,176,106,.12);
+  --dark1:#2a1e16; --dark2:#50341f; --on-dark:#fbf3ea; --on-dark-soft:#dcc8b3;
+  --glow:rgba(231,168,98,.13); --shadow:0 24px 60px -28px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"] .mark:not(.light){opacity:.11}
+:root[data-theme="dark"]{
+  --bg:#14110e; --bg2:#1e1813; --surface:rgba(44,36,29,.62); --solid:#231d17;
+  --ink:#f7efe5; --text:#cfc1b2; --soft:#a09284; --line:rgba(255,235,210,.09);
+  --brand:#a9bcef; --sky:#e7a862; --warm:#eeb06a; --warm-bg:rgba(238,176,106,.12);
+  --dark1:#2a1e16; --dark2:#50341f; --on-dark:#fbf3ea; --on-dark-soft:#dcc8b3;
+  --glow:rgba(231,168,98,.13); --shadow:0 24px 60px -28px rgba(0,0,0,.7); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-sans);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:radial-gradient(900px 600px at -10% 105%,var(--glow),transparent 60%),
+    radial-gradient(700px 500px at 110% -5%,var(--glow),transparent 60%),
+    linear-gradient(105deg,var(--bg2),var(--bg) 22%,var(--bg2) 42%,var(--bg) 62%,var(--bg2) 82%,var(--bg));
+  background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--sky);outline-offset:3px;border-radius:8px}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(72px,11vw,140px)}
+.eyebrow{font-family:var(--f-serif);font-style:italic;font-size:1.3rem;color:var(--sky);margin:0 0 14px;line-height:1.2}
+h1,h2,h3{color:var(--ink);font-weight:600;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.7rem,7.2vw,5.6rem);letter-spacing:-.045em;line-height:.95}
+h2{font-size:clamp(2.1rem,5vw,3.9rem);letter-spacing:-.04em;line-height:.98}
+h3{font-size:1.3rem;letter-spacing:-.02em;line-height:1.2}
+.mute{color:var(--soft)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.22rem);max-width:58ch;color:var(--text)}
+.sec-head{display:grid;gap:18px;margin-bottom:clamp(36px,5vw,60px);max-width:760px}
+.chip-ic{display:inline-grid;place-items:center;width:.95em;height:.72em;border-radius:.22em;background:linear-gradient(140deg,var(--warm),var(--sky));color:#fff;vertical-align:.02em;margin:0 .06em}
+.chip-ic svg{width:.42em;height:.42em}
+
+/* buttons & pills */
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 24px;font:500 1rem/1 var(--f-sans);
+  text-decoration:none;border:0;cursor:pointer;transition:transform .5s var(--ease),background .3s,box-shadow .5s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:var(--bg);box-shadow:0 14px 30px -14px rgba(40,25,10,.5)}
+.btn-blue{background:var(--warm);color:#fff}
+.btn-ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.btn svg{width:18px;height:18px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 14px;font-size:.9rem;font-weight:500;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--sky)}
+.glass{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;padding-top:14px;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.nav-bar{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:12px;padding:8px 8px 8px 10px;border-radius:999px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.brand-mark{width:38px;height:38px;border-radius:999px;background:#fff;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(11,21,48,.08)}
+.brand-mark img{height:26px;width:auto}
+.nav-links{display:flex;gap:2px;margin:0 auto;padding:4px;border-radius:999px}
+.nav-links a{padding:8px 14px;border-radius:999px;text-decoration:none;font-size:.94rem;color:var(--text);transition:background .3s,color .3s}
+.nav-links a:hover,.nav-links a.active{background:var(--solid);color:var(--ink)}
+.nav-cta{display:flex;gap:8px;align-items:center}
+.nav-cta .btn{padding:11px 18px;font-size:.94rem}
+.icon-btn{width:42px;height:42px;border-radius:999px;display:grid;place-items:center;background:var(--solid);border:1px solid var(--line);color:var(--ink);cursor:pointer}
+.icon-btn svg{width:18px;height:18px}
+.menu-btn{display:none}
+.mobile-menu{display:none}
+@media (max-width:980px){
+  .nav-links{display:none}
+  .menu-btn{display:grid}
+  .nav-bar .brand{margin-right:auto}
+  .mobile-menu{display:block;max-width:var(--max);margin:8px auto 0;padding:10px;border-radius:24px}
+  .mobile-menu[hidden]{display:none!important}
+  .mobile-menu a{display:block;padding:12px 14px;border-radius:14px;text-decoration:none;color:var(--ink);font-weight:500}
+  .mobile-menu a:hover{background:var(--solid)}
+}
+@media (max-width:520px){.nav-cta .btn-dark span{display:none}.nav-cta .btn-dark{padding:11px 13px}.brand-name{display:none}}
+
+/* hero */
+.hero{min-height:calc(100vh - 72px);min-height:calc(100svh - 72px);display:flex;align-items:center;padding-block:clamp(32px,5vh,64px)}
+.hero>.wrap{width:100%}
+/* logo watermarks */
+section,footer{position:relative;overflow-x:clip}
+section>.wrap,footer>.wrap,.proc-pin>.wrap{position:relative;z-index:1}
+.mark{position:absolute;z-index:0;pointer-events:none;width:clamp(220px,30vw,440px);aspect-ratio:400/517;
+  background:url("assets/logo-final-bez.png") center/contain no-repeat;opacity:.07;
+  transform:translateY(var(--py,0px)) rotate(var(--r,0deg));will-change:transform}
+.mark.lg{width:clamp(320px,46vw,680px)}
+.mark.sm{width:clamp(140px,16vw,240px)}
+.mark.light{filter:brightness(0) invert(1);opacity:.08}
+.wiz-side>.mark{opacity:.1}
+.foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.foot-brand img{height:46px;width:auto;background:#fff;border-radius:14px;padding:6px 8px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.9fr) minmax(0,1fr);gap:clamp(24px,3vw,48px);align-items:center}
+.hero-copy{display:grid;gap:24px;justify-items:center;text-align:center;min-width:0}
+.hero h1{font-size:clamp(2.5rem,4.9vw,4.6rem);line-height:1}
+.hero h1>span{display:block;white-space:nowrap}
+.hero h1 .l2{color:var(--soft)}
+.hero .lead{max-width:44ch;font-size:clamp(1.05rem,1.35vw,1.18rem);line-height:1.6;text-wrap:pretty;margin:0}
+.hero-place{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;color:var(--soft);margin:-6px 0 0}
+.hero-place svg{width:16px;height:16px;color:var(--sky)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.hp{margin:0;display:grid;gap:14px;justify-items:center;min-width:0}
+.hp-img{width:100%;aspect-ratio:4/5;border-radius:30px;overflow:hidden;box-shadow:var(--shadow);background:var(--bg2);border:6px solid var(--solid)}
+.hp-img img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.hp-l .hp-img{transform:rotate(-2deg)}
+.hp-r .hp-img{transform:rotate(2deg)}
+.hp figcaption{text-align:center;line-height:1.35}
+.hp figcaption b{display:block;color:var(--ink);font-weight:600}
+.hp figcaption span{font-size:.9rem;color:var(--soft)}
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr 1fr;gap:28px 18px}
+  .hero-copy{grid-column:1/-1;order:-1}
+  .hero{min-height:0}
+  .hp-img{border-width:4px;border-radius:24px}
+}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.svc{padding:30px;display:grid;gap:14px;align-content:start;transition:transform .7s var(--ease)}
+.svc:hover{transform:translateY(-4px)}
+.svc-top{display:flex;align-items:center;gap:14px}
+.svc-ic{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(140deg,var(--warm),var(--sky));color:#fff;flex:none}
+.svc-ic svg{width:24px;height:24px}
+.svc .for{font-size:.86rem;font-weight:600;color:var(--sky);text-transform:uppercase;letter-spacing:.07em}
+.svc p{margin:0}
+.svc-toggle{justify-self:start;background:none;border:0;padding:6px 0;color:var(--ink);font:600 .96rem var(--f-sans);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.svc-toggle svg{width:16px;height:16px;transition:transform .5s var(--ease)}
+.svc-toggle[aria-expanded="true"] svg{transform:rotate(45deg)}
+.svc-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.svc-list.open{grid-template-rows:1fr}
+.svc-list>ul{overflow:hidden;margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.svc-list li{display:flex;gap:10px;font-size:.98rem;line-height:1.45}
+.svc-list li::before{content:"";flex:none;width:18px;height:18px;margin-top:2px;border-radius:50%;
+  background:var(--warm-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c47a34' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 8'/%3E%3C/svg%3E") center/12px no-repeat}
+.svc-list.open>ul{padding-top:4px}
+.partners{margin-top:16px;padding:20px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;border-radius:999px}
+.partners b{color:var(--ink);font-weight:600}
+@media (max-width:760px){.svc-grid{grid-template-columns:1fr}.partners{border-radius:24px}}
+
+/* perks */
+.perks{margin-top:16px;padding:22px 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.perk{display:flex;gap:12px;align-items:flex-start;min-width:0}
+.perk svg{width:24px;height:24px;color:var(--sky);flex:none;margin-top:2px}
+.perk h3{font-size:1rem}
+.perk p{margin:2px 0 0;font-size:.9rem;line-height:1.4;color:var(--soft)}
+@media (max-width:980px){.perks{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.perks{grid-template-columns:1fr}}
+
+/* wizard */
+.wiz{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;align-items:stretch}
+.wiz-side{border-radius:var(--r-card);padding:34px;color:var(--on-dark);background:linear-gradient(160deg,var(--dark1),var(--dark2));position:relative;overflow:hidden;display:grid;align-content:space-between;gap:30px}
+.wiz-side::after{content:"";position:absolute;width:320px;height:320px;right:-120px;bottom:-140px;border-radius:50%;background:radial-gradient(circle,rgba(238,176,106,.45),transparent 65%);filter:blur(10px)}
+.wiz-side h2{color:var(--on-dark)}
+.wiz-side h2 .mute{color:var(--on-dark-soft)}
+.wiz-side p{color:var(--on-dark-soft);margin:0;position:relative;z-index:1}
+.wiz-dots{display:flex;gap:8px;position:relative;z-index:1}
+.wiz-dots i{width:34px;height:6px;border-radius:999px;background:rgba(255,255,255,.18);transition:background .5s var(--ease)}
+.wiz-dots i.on{background:var(--sky)}
+.wiz-main{padding:34px;display:grid;align-content:start;gap:22px;min-height:420px}
+.wiz-q{font-size:clamp(1.4rem,2.4vw,1.9rem);letter-spacing:-.03em;color:var(--ink);font-weight:600;line-height:1.15}
+.wiz-step-label{font-size:.85rem;color:var(--soft);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.wiz-opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:16px 18px;border-radius:20px;border:1px solid var(--line);background:var(--solid);color:var(--ink);font:500 1.02rem var(--f-sans);cursor:pointer;transition:border-color .3s,transform .5s var(--ease),box-shadow .5s var(--ease)}
+.opt:hover{border-color:var(--sky);transform:translateX(4px);box-shadow:0 10px 26px -18px rgba(196,122,52,.7)}
+.opt small{display:block;color:var(--soft);font-size:.88rem;font-weight:400}
+.opt .ic{width:40px;height:40px;border-radius:13px;background:var(--bg2);display:grid;place-items:center;flex:none;color:var(--brand)}
+.opt .ic svg{width:20px;height:20px}
+.wiz-back{justify-self:start;background:none;border:0;color:var(--soft);font:500 .95rem var(--f-sans);cursor:pointer;padding:4px 0}
+.wiz-back:hover{color:var(--ink)}
+.res-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.res-list li{display:grid;gap:2px;padding:14px 16px;border-radius:18px;background:var(--solid);border:1px solid var(--line)}
+.res-list li b{color:var(--ink);font-weight:600}
+.res-list li span{font-size:.94rem}
+.res-list li.main{border-color:var(--sky);box-shadow:0 0 0 3px var(--glow)}
+.wiz-anim{animation:wizIn .6s var(--ease)}
+@keyframes wizIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (max-width:860px){.wiz{grid-template-columns:1fr}.wiz-main{min-height:0}}
+
+/* process: pinned scene on desktop, plain list on phones */
+.proc{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,70px);align-items:center}
+.proc-side{display:grid;gap:22px}
+.proc-count{font-size:clamp(4rem,9vw,7rem);font-weight:600;letter-spacing:-.06em;line-height:.9;color:var(--ink);font-variant-numeric:tabular-nums;display:none}
+.proc-count small{font-size:.35em;color:var(--soft);letter-spacing:-.02em}
+.proc-bar{height:4px;border-radius:999px;background:var(--line);overflow:hidden;max-width:280px;display:none}
+.proc-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--warm),var(--sky));border-radius:999px}
+.steps{display:grid;gap:16px}
+.step{padding:30px;display:grid;gap:10px}
+.step .n{font-size:.85rem;font-weight:600;color:var(--sky);letter-spacing:.06em;text-transform:uppercase}
+.step h3{font-size:clamp(1.3rem,2vw,1.7rem)}
+.step p{margin:0}
+.pin-on #spoluprace{padding-block:0}
+.pin-on .proc-scene{height:340vh}
+.pin-on .proc-pin{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.pin-on .proc-pin>.wrap{width:100%}
+.pin-on .proc-count,.pin-on .proc-bar{display:block}
+.pin-on .steps{position:relative;display:block;height:300px}
+.pin-on .step{position:absolute;left:0;right:0;top:0;min-height:240px;padding:40px;align-content:center;background:var(--solid);backdrop-filter:none;-webkit-backdrop-filter:none;
+  transition:transform .9s var(--ease),opacity .9s var(--ease);will-change:transform,opacity}
+.pin-on .step>*{transition:opacity .5s var(--ease)}
+.pin-on .step.past>*{opacity:0}
+@media (max-width:860px){.proc{grid-template-columns:1fr}}
+
+/* story */
+.people{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.person{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:22px;align-items:start;align-content:start}
+.person img{width:150px;height:170px;object-fit:cover;border-radius:20px}
+.person .role{font-size:.85rem;font-weight:600;color:var(--sky);text-transform:uppercase;letter-spacing:.06em}
+.person p{margin:8px 0 0;font-size:.97rem;line-height:1.55}
+.story{grid-column:1/-1;margin:4px 0 0;padding:24px 26px 22px;border-radius:20px;background:var(--warm-bg);font-family:var(--f-serif);font-style:italic;font-size:clamp(1.15rem,1.6vw,1.32rem);line-height:1.42;color:var(--ink);position:relative}
+.story cite{display:block;margin-top:12px;font-family:var(--f-sans);font-style:normal;font-size:.9rem;font-weight:600;color:var(--sky)}
+.person .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.person .tags span{font-size:.8rem;padding:5px 10px;border-radius:999px;background:var(--bg2);color:var(--ink);font-weight:500}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tl{padding:24px;display:grid;gap:8px;align-content:start;position:relative}
+.tl .when{font-family:var(--f-serif);font-style:italic;font-size:1.35rem;color:var(--warm);line-height:1}
+.tl p{margin:0;font-size:.95rem;line-height:1.5}
+.quote{margin-top:16px;padding:clamp(28px,4vw,46px);display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3vw,34px);align-items:start;border-radius:var(--r-card);background:var(--warm-bg);border:1px solid var(--line)}
+.quote .qm{font-family:var(--f-serif);font-size:6rem;line-height:.7;color:var(--warm)}
+.quote blockquote{margin:0;font-family:var(--f-serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.85rem);line-height:1.3;color:var(--ink)}
+.quote cite{display:block;margin-top:14px;font-style:normal;font-family:var(--f-sans);font-size:.95rem;color:var(--soft)}
+@media (max-width:960px){.people{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.person{grid-template-columns:1fr}.person img{width:100%;height:260px}.timeline{grid-template-columns:1fr}.quote{grid-template-columns:1fr}.quote .qm{font-size:4rem}}
+
+/* calendar */
+.cal{display:grid;grid-template-columns:.8fr 1.2fr;gap:16px;align-items:start}
+.cal-side{padding:30px;display:grid;gap:18px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{border-radius:999px;padding:9px 15px;border:1px solid var(--line);background:var(--solid);color:var(--text);font:500 .92rem var(--f-sans);cursor:pointer;transition:all .3s}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cal-note{font-size:.86rem;color:var(--soft);margin:0}
+.cal-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.dl{display:grid;grid-template-columns:72px 1fr auto;gap:16px;align-items:center;padding:14px 18px 14px 14px;border-radius:22px}
+.dl .date{display:grid;place-items:center;text-align:center;width:72px;height:72px;border-radius:18px;background:var(--solid);border:1px solid var(--line);line-height:1}
+.dl .date b{font-size:1.75rem;letter-spacing:-.04em;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.dl .date span{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--soft);font-weight:600;margin-top:-10px}
+.dl .what{min-width:0}
+.dl .what b{display:block;color:var(--ink);font-weight:600;line-height:1.3}
+.dl .what span{font-size:.9rem;color:var(--soft)}
+.dl .left{font-size:.9rem;font-weight:600;color:var(--brand);white-space:nowrap;padding:7px 12px;border-radius:999px;background:var(--bg2)}
+.dl .left.soon{color:var(--warm);background:var(--warm-bg)}
+@media (max-width:860px){.cal{grid-template-columns:1fr}}
+@media (max-width:480px){.dl{grid-template-columns:60px 1fr;gap:12px}.dl .date{width:60px;height:60px}.dl .left{grid-column:2;justify-self:start;margin-top:-4px}}
+
+/* logos */
+.logos-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:14px;width:max-content;animation:slide 38s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.logo-tile{width:200px;height:96px;border-radius:22px;background:#fff;display:grid;place-items:center;padding:16px 22px;border:1px solid rgba(11,21,48,.07)}
+.logo-tile img{max-height:62px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.78;transition:all .4s}
+.logo-tile:hover img{filter:none;opacity:1}
+.sw{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:16px}
+.sw .logo-tile{width:auto;height:88px}
+.sw .logo-tile img{filter:none;opacity:1;max-height:70px}
+@media (max-width:760px){.sw{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:420px){.sw{grid-template-columns:repeat(2,1fr)}}
+
+/* faq */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,5vw,70px);align-items:start}
+.faq-list{display:grid;gap:10px}
+.faq details{border-radius:22px;padding:0 22px}
+.faq summary{list-style:none;cursor:pointer;padding:20px 0;display:flex;justify-content:space-between;gap:16px;align-items:center;color:var(--ink);font-weight:600;font-size:1.06rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;transition:transform .5s var(--ease)}
+.faq summary i svg{width:14px;height:14px}
+.faq details[open] summary i{transform:rotate(45deg)}
+.faq details p{margin:0 0 20px;max-width:62ch}
+@media (max-width:860px){.faq{grid-template-columns:1fr}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-cards{display:grid;gap:16px;align-content:start}
+.cc{padding:24px;display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center}
+.cc img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+.cc h3{font-size:1.12rem}
+.cc .role{font-size:.85rem;color:var(--soft)}
+.cc-rows{grid-column:1/-1;display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:var(--solid);border:1px solid var(--line);min-width:0}
+.row svg{width:18px;height:18px;color:var(--sky);flex:none}
+.row a{text-decoration:none;color:var(--ink);font-weight:500;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.row button{margin-left:auto;border:0;background:var(--bg2);color:var(--ink);border-radius:999px;padding:6px 11px;font:500 .8rem var(--f-sans);cursor:pointer;flex:none}
+.office{padding:24px;display:grid;gap:12px}
+.office p{margin:0}
+.form{padding:clamp(24px,3.5vw,36px);display:grid;gap:14px;align-content:start}
+.form h3{font-size:1.5rem;letter-spacing:-.03em}
+.field{display:grid;gap:6px}
+.field label{font-size:.88rem;font-weight:600;color:var(--ink)}
+.field input,.field select,.field textarea{width:100%;font:400 1rem var(--f-sans);color:var(--ink);background:var(--solid);border:1px solid var(--line);border-radius:16px;padding:13px 15px;transition:border-color .3s,box-shadow .3s}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 4px var(--glow)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form small{color:var(--soft);font-size:.84rem}
+.sent{display:grid;gap:10px;place-items:start;padding:10px 0}
+.sent b{font-size:1.3rem;color:var(--ink)}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:460px){.two{grid-template-columns:1fr}.cc{grid-template-columns:52px 1fr}.cc img{width:52px;height:52px}}
+
+/* footer */
+footer{padding-block:clamp(60px,8vw,100px) 40px}
+.foot-slogan{font-size:clamp(2.4rem,7vw,5.4rem);letter-spacing:-.05em;line-height:.95;font-weight:600;color:var(--ink);margin:0 0 40px}
+.foot-slogan em{font-family:var(--f-serif);font-weight:400;color:var(--sky);letter-spacing:-.02em}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:24px;padding-top:30px;border-top:1px solid var(--line);font-size:.94rem}
+.foot-grid h4{margin:0 0 8px;color:var(--ink);font-size:.9rem}
+.foot-grid p{margin:0;line-height:1.6}
+.foot-grid a{color:var(--text)}
+.copy{margin-top:30px;font-size:.84rem;color:var(--soft)}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:440px){.foot-grid{grid-template-columns:1fr}}
+
+/* mobile quick bar */
+.quick{position:fixed;left:50%;transform:translateX(-50%) translateY(120%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;display:none;gap:6px;padding:6px;border-radius:999px;transition:transform .6s var(--ease)}
+.quick.show{transform:translateX(-50%)}
+.quick .btn{padding:12px 18px;font-size:.95rem}
+@media (max-width:760px){.quick{display:flex}}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease);transition-delay:calc(var(--i,0)*70ms)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
+  .track [aria-hidden="true"]{display:none}
+  .next-card .c::before{animation:none}
+  *{transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-bar glass">
+    <a class="brand" href="#top" aria-label="Účetnictví F&amp;G, na začátek stránky">
+      <span class="brand-mark"><img src="assets/logo-final-bez.png" alt=""></span>
+      <span class="brand-name">Účetnictví F&amp;G</span>
+    </a>
+    <nav class="nav-links" aria-label="Hlavní navigace">
+      <a href="#sluzby">Služby</a>
+      <a href="#pruvodce">Co potřebuji?</a>
+      <a href="#spoluprace">Jak začneme</a>
+      <a href="#o-nas">O nás</a>
+      <a href="#terminy">Termíny</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-dark" href="#kontakt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 010 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg><span>Nezávazná konzultace</span></a>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Otevřít menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
+    </div>
+  </div>
+  <div class="mobile-menu glass" id="mobileMenu" hidden>
+    <a href="#sluzby">Služby</a><a href="#pruvodce">Co potřebuji?</a><a href="#spoluprace">Jak začneme</a><a href="#o-nas">O nás</a><a href="#terminy">Termíny</a><a href="#kontakt">Kontakt</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <span class="mark lg" data-speed=".12" style="left:50%;top:50%;margin:-40% 0 0 -23%;--r:-8deg;opacity:.05" aria-hidden="true"></span>
+  <div class="wrap hero-grid">
+    <figure class="hp hp-l rv" style="--i:2">
+      <div class="hp-img"><img src="assets/sylva.jpg" alt="Sylva Gehrová" width="720" height="669"></div>
+      <figcaption><b>Sylva Gehrová</b><span>jednatelka · 25+ let praxe</span></figcaption>
+    </figure>
+    <div class="hero-copy">
+      <p class="eyebrow rv" style="margin:0">Účetnictví F&amp;G s.r.o.</p>
+      <h1 class="rv" style="--i:1"><span>Klíč k&nbsp;vašemu</span><span class="l2">podnikání<span class="chip-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></span></span></h1>
+      <p class="lead rv" style="--i:2">Jsme malá rodinná společnost. Vedeme účetnictví, daňovou evidenci a mzdy pro malé a střední podniky, OSVČ a neziskové organizace, abyste se vy mohli soustředit na růst své firmy.</p>
+      <p class="hero-place rv" style="--i:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Kancelář v komplexu Delta ve Vsetíně</p>
+      <div class="hero-actions rv" style="--i:3">
+        <a class="btn btn-dark" href="#kontakt">Domluvit konzultaci <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#pruvodce">Co budu potřebovat?</a>
+      </div>
+    </div>
+    <figure class="hp hp-r rv" style="--i:3">
+      <div class="hp-img"><img src="assets/nikola.jpg" alt="Bc. Nikola Frýdlová" width="720" height="708"></div>
+      <figcaption><b>Bc. Nikola Frýdlová</b><span>jednatelka · 15+ let praxe</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="sluzby">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Co pro vás uděláme</p>
+      <h2 class="rv" style="--i:1">Čtyři služby.<br><span class="mute">Jeden telefon.</span></h2>
+      <p class="lead rv" style="--i:2">Ať jste živnostník, firma, nebo spolek, staráme se o celou agendu podle platných předpisů ČR.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc glass rv">
+        <div class="svc-top"><span class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span><div><span class="for">Pro s.r.o. a a.s.</span><h3>Vedení účetnictví</h3></div></div>
+        <p>Kompletní účetnictví od dokladů po účetní závěrku pro obchodní rejstřík.</p>
+        <button class="svc-toggle" aria-expanded="false" aria-controls="s1">Co přesně uděláme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="svc-list" id="s1"><ul>
+          <li>Účetnictví v souladu s českými účetními standardy</li>
+          <li>Přiznání k DPH</li>
+          <li>Účetní závěrka a výkazy pro obchodní rejstřík</li>
+          <li>Poradenství k optimalizaci daní a daňovým úlevám</li>
+          <li>Mzdová agenda včetně personalistiky</li>
+        </ul></div>
+      </article>
+      <article class="svc glass rv" style="--i:1">
+        <div class="svc-top"><span class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></span><div><span class="for">Pro OSVČ</span><h3>Daňová evidence</h3></div></div>
+        <p>Příjmy a výdaje v pořádku, přiznání podané včas a přehledy pro pojišťovny hotové.</p>
+        <button class="svc-toggle" aria-expanded="false" aria-controls="s2">Co přesně uděláme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="svc-list" id="s2"><ul>
+          <li>Vedení daňové evidence a správná evidence příjmů a výdajů</li>
+          <li>Přehledy pro sociální a zdravotní pojištění</li>
+          <li>Poradenství k optimalizaci daní a plnění zákonných povinností</li>
+        </ul></div>
+      </article>
+      <article class="svc glass rv">
+        <div class="svc-top"><span class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14a6.5 6.5 0 013.5 6"/></svg></span><div><span class="for">Pro zaměstnavatele</span><h3>Mzdové účetnictví</h3></div></div>
+        <p>Mzdy spočítané správně a včas, včetně všech hlášení pro úřady a pojišťovny.</p>
+        <button class="svc-toggle" aria-expanded="false" aria-controls="s3">Co přesně uděláme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="svc-list" id="s3"><ul>
+          <li>Výpočet a zpracování mezd podle platných zákonů</li>
+          <li>Přehledy a hlášení pro ČSSZ a zdravotní pojišťovny</li>
+          <li>Roční zúčtování daně a evidenční listy</li>
+          <li>Přihlášky a odhlášky při nástupu a odchodu zaměstnance, dokumenty pro zaměstnance</li>
+          <li>Poradenství v pracovním právu, benefitech a mzdových nákladech</li>
+        </ul></div>
+      </article>
+      <article class="svc glass rv" style="--i:1">
+        <div class="svc-top"><span class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-9.3-9.2C1.4 8.4 3.6 5 7 5c2.1 0 3.6 1.2 5 3 1.4-1.8 2.9-3 5-3 3.4 0 5.6 3.4 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></span><div><span class="for">Pro spolky</span><h3>Neziskové organizace</h3></div></div>
+        <p>Účetnictví zapsaných spolků a pomoc se specifickými pravidly neziskového sektoru.</p>
+        <button class="svc-toggle" aria-expanded="false" aria-controls="s4">Co přesně uděláme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="svc-list" id="s4"><ul>
+          <li>Kompletní účetnictví zapsaných spolků</li>
+          <li>Poradenství ve specifických účetních a daňových pravidlech neziskovek</li>
+          <li>Sylva se účetnictví neziskových organizací věnuje dlouhodobě</li>
+        </ul></div>
+      </article>
+    </div>
+    <div class="perks glass rv">
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14l-1.5-6.5A2 2 0 0015.6 9H8.4a2 2 0 00-1.9 1.5z"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></svg><div><h3>Přijedeme pro doklady</h3><p>Nebo je pošlete elektronicky.</p></div></div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 6a3 3 0 006 0zM19 7l-3 6a3 3 0 006 0zM8 21h8"/></svg><div><h3>Jednáme s úřady</h3><p>Na základě plné moci.</p></div></div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7"/></svg><div><h3>Vzájemně zastupitelné</h3><p>Dovolená nic nezdrží.</p></div></div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l10-4 10 4-10 4z"/><path d="M6 9v5c0 1.7 2.7 3 6 3s6-1.3 6-3V9"/></svg><div><h3>Stále se vzděláváme</h3><p>Kurzy a webináře každý rok.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WIZARD -->
+<section id="pruvodce" style="padding-top:0">
+  <div class="wrap wiz">
+    <div class="wiz-side rv">
+      <span class="mark light sm" style="left:-40px;bottom:-60px;--r:-12deg" aria-hidden="true"></span>
+      <div style="position:relative;z-index:1;display:grid;gap:16px">
+        <p class="eyebrow" style="color:var(--sky);margin:0">Průvodce</p>
+        <h2>Co budu potřebovat?<br><span class="mute">Tři klepnutí.</span></h2>
+        <p>Odpovězte na tři otázky a hned uvidíte, se kterými službami vám pomůžeme. Výsledek můžete rovnou poslat jako poptávku.</p>
+      </div>
+      <div class="wiz-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="wiz-main glass rv" style="--i:1" id="wizMain" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="spoluprace" style="padding-top:0">
+  <div class="proc-scene" id="procScene">
+    <div class="proc-pin">
+      <div class="wrap proc">
+        <div class="proc-side">
+          <p class="eyebrow" style="margin:0">Jak začneme</p>
+          <h2>Přechod k nám<br><span class="mute">je snadný.</span></h2>
+          <div class="proc-count" aria-hidden="true"><span id="procN">1</span><small>/4</small></div>
+          <div class="proc-bar" aria-hidden="true"><i id="procBar"></i></div>
+        </div>
+        <div class="steps" id="steps">
+          <article class="step glass" data-step="1"><span class="n">Krok 1</span><h3>Ozvete se</h3><p>Zavolejte, napište, nebo vyplňte formulář. Domluvíme si krátkou nezávaznou schůzku.</p></article>
+          <article class="step glass" data-step="2"><span class="n">Krok 2</span><h3>Probereme to u kávy</h3><p>V klidu a v soukromí naší kanceláře v komplexu Delta. Zjistíme, co potřebujete, a připravíme nabídku na míru.</p></article>
+          <article class="step glass" data-step="3"><span class="n">Krok 3</span><h3>Předáte doklady</h3><p>Osobně, elektronicky, nebo si pro ně přijedeme. Pracujeme v programech, které znáte, takže se nemusíte nic učit.</p></article>
+          <article class="step glass" data-step="4"><span class="n">Krok 4</span><h3>Máte klid</h3><p>Hlídáme termíny, podáváme přiznání a hlášení a s úřady jednáme za vás. Vy se věnujete svému podnikání.</p></article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="o-nas" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">O nás</p>
+      <h2 class="rv" style="--i:1">Máma a dcera.<br><span class="mute">Jedna kancelář.</span></h2>
+      <p class="lead rv" style="--i:2">Účetnictví F&amp;G jsme založily v roce 2024. Malá rodinná firma s dlouholetou praxí a individuálním přístupem ke každému klientovi.</p>
+    </div>
+    <div class="people">
+      <article class="person glass rv">
+        <img src="assets/sylva.jpg" alt="Sylva Gehrová" loading="lazy" width="720" height="669">
+        <div>
+          <span class="role">Jednatelka · 25+ let praxe</span>
+          <h3>Sylva Gehrová</h3>
+          <p>Vystudovala obchodní akademii a dlouhá léta vedla účetnictví ve výrobní akciové společnosti. Zná účetnictví výrobních firem, menších společností i neziskového sektoru.</p>
+          <div class="tags"><span>Účetnictví</span><span>Daňová evidence</span><span>Neziskovky</span></div>
+        </div>
+        <blockquote class="story">„Od základní školy mi bylo jasné, že bych chtěla studovat na ekonomické škole. Střední ekonomickou školu jsem dostudovala a ukončila maturitní zkouškou. Od té doby se věnuji účetnictví a ekonomice. Mám zkušenosti s účetnictvím jak výrobních firem, tak s účetnictvím menších společností i s neziskovým sektorem. Své ‚know-how‘ předávám své dceři, která s radostí pokračuje v oboru ekonomiky a účetnictví.“<cite>Sylva</cite></blockquote>
+      </article>
+      <article class="person glass rv" style="--i:1">
+        <img src="assets/nikola.jpg" alt="Bc. Nikola Frýdlová" loading="lazy" width="720" height="708">
+        <div>
+          <span class="role">Jednatelka · 15+ let praxe</span>
+          <h3>Bc. Nikola Frýdlová</h3>
+          <p>Vystudovala obor Účetnictví a daně na Univerzitě Tomáše Bati ve Zlíně. Specializuje se na mzdy, daňovou evidenci a účetnictví.</p>
+          <div class="tags"><span>Mzdy</span><span>Daňová evidence</span><span>Účetnictví</span></div>
+        </div>
+        <blockquote class="story">„Už jako malá holka, po vzoru maminky, jsem si hrála na velkou paní účetní. Podepisovala a razítkovala jsem všechny papíry a obrázky, které jsem doma našla. Jak jsem rostla, dostala jsem příjmové pokladní doklady, což mou práci malé účetní posunulo na úplně jinou úroveň. Každý doklad jsem vypsala do posledního detailu. A abych měla co vypisovat, všechny kolem jsem prosila, aby si u mě něco koupili.“<cite>Nikola</cite></blockquote>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="terminy" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Daňový kalendář</p>
+      <h2 class="rv" style="--i:1">Co se blíží.<br><span class="mute">Ohlídáme to za vás.</span></h2>
+    </div>
+    <div class="cal">
+      <div class="cal-side glass rv">
+        <p style="margin:0;color:var(--ink);font-weight:600">Které termíny se vás týkají?</p>
+        <div class="filters" role="group" aria-label="Filtrovat termíny">
+          <button type="button" data-f="all" aria-pressed="true">Vše</button>
+          <button type="button" data-f="osvc" aria-pressed="false">Jsem OSVČ</button>
+          <button type="button" data-f="firma" aria-pressed="false">Mám firmu</button>
+          <button type="button" data-f="mzdy" aria-pressed="false">Mám zaměstnance</button>
+          <button type="button" data-f="dph" aria-pressed="false">Plátce DPH</button>
+        </div>
+        <p class="cal-note">Orientační přehled obecných zákonných lhůt. Termíny připadající na víkend nebo svátek posouváme na další pracovní den. Přesné lhůty pro vaši situaci pohlídáme my.</p>
+      </div>
+      <ol class="cal-list rv" style="--i:1" id="calList" aria-live="polite"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS + SOFTWARE -->
+<section style="padding-top:0" aria-labelledby="refH">
+  <div class="wrap">
+    <div class="logos-head">
+      <div><p class="eyebrow rv">Reference</p><h2 class="rv" id="refH" style="--i:1">Svěřili se nám.</h2></div>
+      <p class="lead rv" style="--i:2;max-width:40ch;margin:0">Podnikatelé z Vsetínska, Karolinky a Velkých Karlovic.</p>
+    </div>
+  </div>
+  <div class="marquee rv" style="--i:2">
+    <div class="track">
+      <div class="logo-tile"><img src="assets/moravek.png" alt="Prodejna skla Karolinka" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/LOGO-La-Siska.png" alt="La Šiška, Velké Karlovice" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/dakota.png" alt="Dakota Living" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/industry.png" alt="Industry Studio" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/solan.png" alt="Zvonice Soláň" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/extreeme.png" alt="Xtreme Adventures" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/moravek.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/LOGO-La-Siska.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/dakota.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/industry.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/solan.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/extreeme.png" alt="" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:clamp(60px,8vw,100px)">
+    <div class="sec-head" style="margin-bottom:0">
+      <p class="eyebrow rv">Programy</p>
+      <h2 class="rv" style="--i:1">Pracujeme v programech,<br><span class="mute">které znáte.</span></h2>
+    </div>
+    <div class="sw">
+      <div class="logo-tile rv"><img src="assets/pohoda.png" alt="POHODA" loading="lazy"></div>
+      <div class="logo-tile rv" style="--i:1"><img src="assets/k2.png" alt="K2" loading="lazy"></div>
+      <div class="logo-tile rv" style="--i:2"><img src="assets/keo.png" alt="KEO" loading="lazy"></div>
+      <div class="logo-tile rv" style="--i:3"><img src="assets/stereo.png" alt="Stereo" loading="lazy"></div>
+      <div class="logo-tile rv" style="--i:4"><img src="assets/mrp-1.png" alt="MRP" loading="lazy"></div>
+      <div class="logo-tile rv" style="--i:5"><img src="assets/pamcia.png" alt="PAMICA" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap faq">
+    <div class="sec-head" style="position:sticky;top:120px">
+      <p class="eyebrow rv">Časté otázky</p>
+      <h2 class="rv" style="--i:1">Na co se<br><span class="mute">nás ptáte.</span></h2>
+      <p class="rv" style="--i:2;margin:0">Nenašli jste odpověď? <a href="#kontakt" style="color:var(--brand);font-weight:600">Zeptejte se nás přímo.</a></p>
+    </div>
+    <div class="faq-list">
+      <details class="glass rv"><summary>Kolik stojí vedení účetnictví?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Cena závisí hlavně na počtu dokladů, počtu zaměstnanců a na tom, jestli jste plátce DPH. Po krátké konzultaci vám připravíme nabídku na míru.</p></details>
+      <details class="glass rv"><summary>Musím doklady nosit osobně?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Nemusíte. Doklady si rády vyzvedneme podle vašich požadavků, můžete je poslat elektronicky, nebo je přinést do kanceláře v komplexu Delta.</p></details>
+      <details class="glass rv"><summary>Jednáte za mě s úřady?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Ano. Na základě plné moci vás zastoupíme při komunikaci s úřady, například s finančním úřadem, sociální správou nebo zdravotní pojišťovnou.</p></details>
+      <details class="glass rv"><summary>Co když jedna z vás onemocní nebo je na dovolené?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Jsme vzájemně zastupitelné. Vaše agenda nezůstane ležet a termíny se dodrží.</p></details>
+      <details class="glass rv"><summary>Co když potřebuji daňového poradce nebo právníka?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Spolupracujeme s daňovým poradcem, auditorem a advokátem. Když je potřeba, propojíme vás.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="kontakt" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Kontakt</p>
+      <h2 class="rv" style="--i:1">Pojďme se poznat.<br><span class="mute">Káva je na nás.</span></h2>
+    </div>
+    <div class="contact">
+      <div class="contact-cards">
+        <article class="cc glass rv">
+          <img src="assets/sylva.jpg" alt="" loading="lazy">
+          <div><h3>Sylva Gehrová</h3><span class="role">jednatelka</span></div>
+          <div class="cc-rows">
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg><a href="tel:+420603286006">+420 603 286 006</a><button type="button" data-copy="+420 603 286 006">Kopírovat</button></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:sylva@ucetni-fg.cz">sylva@ucetni-fg.cz</a><button type="button" data-copy="sylva@ucetni-fg.cz">Kopírovat</button></div>
+          </div>
+        </article>
+        <article class="cc glass rv" style="--i:1">
+          <img src="assets/nikola.jpg" alt="" loading="lazy">
+          <div><h3>Bc. Nikola Frýdlová</h3><span class="role">jednatelka</span></div>
+          <div class="cc-rows">
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg><a href="tel:+420732944308">+420 732 944 308</a><button type="button" data-copy="+420 732 944 308">Kopírovat</button></div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:nikola@ucetni-fg.cz">nikola@ucetni-fg.cz</a><button type="button" data-copy="nikola@ucetni-fg.cz">Kopírovat</button></div>
+          </div>
+        </article>
+        <article class="office glass rv" style="--i:2">
+          <h3>Kancelář</h3>
+          <p>Komplex Delta, budova A3, kancelář č. 3.12<br>Na Deltě 2472, 755 01 Vsetín</p>
+          <p class="mute" style="font-size:.94rem">Schůzky podle domluvy, u nás v kanceláři nebo u vás.</p>
+          <a class="btn btn-ghost" style="justify-self:start" href="https://mapy.com/fnc/v1/search?query=Na%20Delt%C4%9B%202472%2C%20Vset%C3%ADn" target="_blank" rel="noopener">Otevřít v mapě <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        </article>
+      </div>
+      <form class="form glass rv" style="--i:1" id="form" novalidate>
+        <h3>Napište nám</h3>
+        <p style="margin:0" class="mute">Ozveme se vám a domluvíme nezávaznou konzultaci.</p>
+        <div class="field"><label for="f-name">Jméno a příjmení</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="two">
+          <div class="field"><label for="f-phone">Telefon</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="f-mail">E-mail</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
+        </div>
+        <div class="field"><label for="f-svc">S čím potřebujete pomoct?</label>
+          <select id="f-svc" name="service">
+            <option>Vedení účetnictví (s.r.o., a.s.)</option>
+            <option>Daňová evidence (OSVČ)</option>
+            <option>Mzdové účetnictví</option>
+            <option>Účetnictví neziskové organizace</option>
+            <option selected>Zatím nevím, poraďte mi</option>
+          </select></div>
+        <div class="field"><label for="f-msg">Zpráva</label><textarea id="f-msg" name="message" placeholder="Např. jsem OSVČ, mám 2 zaměstnance a hledám novou účetní."></textarea></div>
+        <p id="f-err" class="mute" role="alert" style="margin:0;color:var(--warm)" hidden></p>
+        <button class="btn btn-blue" type="submit" style="justify-self:start">Odeslat poptávku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <small>Odesláním souhlasíte se zpracováním údajů za účelem odpovědi. <a href="https://ucetni-fg.cz/ochrana-osobnich-udaju/" target="_blank" rel="noopener">Ochrana osobních údajů</a></small>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span class="mark lg" data-speed=".08" style="right:-6%;top:-10%;--r:-6deg" aria-hidden="true"></span>
+  <div class="wrap">
+    <p class="foot-slogan rv">Vy podnikáte.<br><em>My hlídáme čísla.</em></p>
+    <div class="foot-grid">
+      <div><div class="foot-brand"><img src="assets/logo-final-bez.png" alt="Logo Účetnictví F&amp;G" loading="lazy"></div><h4>Účetnictví F&amp;G s.r.o.</h4><p>IČO: 22161741<br>Sídlo: Příčná 1777, 755 01 Vsetín</p></div>
+      <div><h4>Kancelář</h4><p>Na Deltě 2472, budova A3<br>kancelář č. 3.12, 755 01 Vsetín</p></div>
+      <div><h4>Telefon</h4><p>Sylva: +420 603 286 006<br>Nikola: +420 732 944 308</p></div>
+      <div><h4>Sledujte nás</h4><p><a href="https://www.instagram.com/ucetnictvi_fg/" target="_blank" rel="noopener">Instagram</a><br><a href="https://ucetni-fg.cz/ochrana-osobnich-udaju/" target="_blank" rel="noopener">Ochrana osobních údajů</a></p></div>
+    </div>
+    <p class="copy">© <span id="yr">2026</span> Účetnictví F&amp;G s.r.o.</p>
+  </div>
+</footer>
+
+<div class="quick glass" id="quick" aria-label="Rychlý kontakt">
+  <a class="btn btn-ghost" href="tel:+420732944308">Zavolat</a>
+  <a class="btn btn-dark" href="#kontakt">Domluvit konzultaci</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const root=document.documentElement; root.classList.add('js');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+
+  /* smooth scroll */
+  let lenis=null;
+  if(!reduce && window.Lenis){
+    try{
+      lenis=new Lenis({lerp:.075});window.__lenis=lenis;
+      const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)}; requestAnimationFrame(raf);
+      $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+        const id=a.getAttribute('href'); if(id.length<2) return;
+        const el=$(id); if(!el) return; e.preventDefault(); lenis.scrollTo(el,{offset:-90}); closeMenu();
+      }));
+    }catch(e){lenis=null}
+  }
+
+  /* reveal */
+  const rv=$$('.rv');
+  if('IntersectionObserver' in window && !reduce){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    rv.forEach(el=>io.observe(el));
+    setTimeout(()=>rv.forEach(el=>el.classList.add('in')),3500);
+  } else rv.forEach(el=>el.classList.add('in'));
+
+  /* logo watermark parallax */
+  const marks=$$('.mark[data-speed]');
+  if(!reduce&&marks.length){
+    let tick=false;
+    const par=()=>{tick=false;const vh=innerHeight;marks.forEach(m=>{const r=m.parentElement.getBoundingClientRect();if(r.bottom<-200||r.top>vh+200)return;const c=r.top+r.height/2-vh/2;m.style.setProperty('--py',(-c*+m.dataset.speed).toFixed(1)+'px')})};
+    addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(par)}},{passive:true}); par();
+  }
+
+  /* counters */
+  const counters=$$('[data-count]');
+  if('IntersectionObserver' in window && !reduce){
+    const co=new IntersectionObserver(es=>es.forEach(e=>{
+      if(!e.isIntersecting) return; co.unobserve(e.target);
+      const el=e.target,to=+el.dataset.count,t0=performance.now(),d=1400;
+      const step=t=>{const p=Math.min(1,(t-t0)/d),v=1-Math.pow(1-p,3);el.textContent=Math.round(to*v);if(p<1)requestAnimationFrame(step)};
+      el.textContent='0'; requestAnimationFrame(step);
+    }),{threshold:.6});
+    counters.forEach(el=>co.observe(el));
+  }
+
+  /* mobile menu */
+  const menuBtn=$('#menuBtn'),menu=$('#mobileMenu');
+  function closeMenu(){menu.hidden=true;menuBtn.setAttribute('aria-expanded','false')}
+  menuBtn.addEventListener('click',()=>{const o=menu.hidden;menu.hidden=!o;menuBtn.setAttribute('aria-expanded',String(o))});
+  $$('#mobileMenu a').forEach(a=>a.addEventListener('click',closeMenu));
+
+  /* active nav link */
+  const links=$$('.nav-links a');
+  const secs=links.map(a=>$(a.getAttribute('href'))).filter(Boolean);
+  if('IntersectionObserver' in window){
+    const no=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(s=>no.observe(s));
+  }
+
+  /* quick bar on mobile after hero */
+  const quick=$('#quick'),hero=$('.hero'),contact=$('#kontakt');
+  const onScroll=()=>{const y=window.scrollY,hb=hero.offsetHeight*.8,ct=contact.getBoundingClientRect().top;quick.classList.toggle('show',y>hb&&ct>window.innerHeight*.6)};
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* service toggles */
+  $$('.svc-toggle').forEach(b=>b.addEventListener('click',()=>{
+    const open=b.getAttribute('aria-expanded')!=='true';
+    b.setAttribute('aria-expanded',String(open));
+    $('#'+b.getAttribute('aria-controls')).classList.toggle('open',open);
+    b.firstChild.textContent=open?'Skrýt detail ':'Co přesně uděláme ';
+  }));
+
+  /* process: pinned card stack driven by scroll */
+  const scene=$('#procScene'),steps=$$('.step'),procN=$('#procN'),procBar=$('#procBar');
+  const wide=matchMedia('(min-width:861px) and (min-height:560px)');
+  let curStep=-1;
+  function procMode(){root.classList.toggle('pin-on',wide.matches&&!reduce);curStep=-1;procUpdate()}
+  function procUpdate(){
+    if(!root.classList.contains('pin-on')){steps.forEach(s=>{s.style.transform='';s.style.opacity='';s.style.zIndex=''});return}
+    const total=scene.offsetHeight-innerHeight;
+    const p=Math.min(1,Math.max(0,-scene.getBoundingClientRect().top/total));
+    procBar.style.width=(p*100)+'%';
+    const cur=Math.min(3,Math.floor(p*4.0001));
+    if(cur===curStep) return; curStep=cur; procN.textContent=cur+1;
+    steps.forEach((s,i)=>{const d=i-cur;
+      if(d<0){s.style.transform=`translateY(${d*18}px) scale(${1+d*.05})`;s.style.opacity=String(Math.max(0,1.3+d*.35))}
+      else if(d===0){s.style.transform='none';s.style.opacity='1'}
+      else{s.style.transform=`translateY(${60+d*20}px) scale(.96)`;s.style.opacity='0'}
+      s.style.zIndex=String(10-Math.abs(d)); s.classList.toggle('past',d<0);
+    });
+  }
+  addEventListener('scroll',procUpdate,{passive:true});
+  addEventListener('resize',procUpdate);
+  (wide.addEventListener?wide.addEventListener('change',procMode):wide.addListener(procMode));
+  procMode();
+  document.fonts&&document.fonts.ready.then(()=>{curStep=-1;procUpdate()});
+
+  /* copy buttons */
+  $$('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+    const v=b.dataset.copy,done=()=>{b.textContent='Zkopírováno';setTimeout(()=>b.textContent='Kopírovat',1800)};
+    try{navigator.clipboard.writeText(v).then(done,()=>sel(b))}catch(e){sel(b)}
+  }));
+  function sel(b){const a=b.previousElementSibling,r=document.createRange();r.selectNodeContents(a);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+
+  /* ---------- tax calendar ---------- */
+  const MONTHS=['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'];
+  const MSHORT=['led','úno','bře','dub','kvě','čvn','čvc','srp','zář','říj','lis','pro'];
+  const MNOM=['leden','únor','březen','duben','květen','červen','červenec','srpen','září','říjen','listopad','prosinec'];
+  function easter(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;return new Date(y,mo-1,da)}
+  const hcache={};
+  function holidays(y){if(hcache[y])return hcache[y];const s=new Set(['1-1','5-1','5-8','7-5','7-6','9-28','10-28','11-17','12-24','12-25','12-26']);const e=easter(y);const gf=new Date(e);gf.setDate(e.getDate()-2);const em=new Date(e);em.setDate(e.getDate()+1);s.add((gf.getMonth()+1)+'-'+gf.getDate());s.add((em.getMonth()+1)+'-'+em.getDate());return hcache[y]=s}
+  function isWork(d){const w=d.getDay();return w!==0&&w!==6&&!holidays(d.getFullYear()).has((d.getMonth()+1)+'-'+d.getDate())}
+  function shift(d){d=new Date(d);while(!isWork(d))d.setDate(d.getDate()+1);return d}
+  function deadlines(from,to){
+    const out=[];const start=new Date(from.getFullYear(),from.getMonth()-1,1);
+    for(let d=new Date(start);d<=to;d.setMonth(d.getMonth()+1)){
+      const y=d.getFullYear(),m=d.getMonth(),prev=MNOM[(m+11)%12],cur=MNOM[m];
+      out.push({d:new Date(y,m,8),t:'Záloha na zdravotní pojištění OSVČ',s:'Za '+prev,tags:['osvc']});
+      out.push({d:shift(new Date(y,m,20)),t:'Odvod daně a pojistného ze mezd',s:'Za '+prev+', zálohová daň a pojistné za zaměstnance',tags:['mzdy']});
+      const q=[0,3,6,9].includes(m);
+      out.push({d:shift(new Date(y,m,25)),t:'Přiznání k DPH a kontrolní hlášení',s:q?'Měsíční plátci za '+prev+', čtvrtletní za '+(m===0?4:m/3)+'. čtvrtletí':'Měsíční plátci za '+prev,tags:['dph']});
+      out.push({d:new Date(y,m+1,0),t:'Záloha na sociální pojištění OSVČ',s:'Za '+cur,tags:['osvc']});
+      if(m===3) out.push({d:shift(new Date(y,3,1)),t:'Daňové přiznání za rok '+(y-1)+' v listinné podobě',s:'Daň z příjmů fyzických i právnických osob',tags:['osvc','firma'],big:1});
+      if(m===4) out.push({d:shift(new Date(y,4,1)),t:'Daňové přiznání za rok '+(y-1)+' elektronicky',s:'Při podání elektronicky se lhůta prodlužuje o měsíc',tags:['osvc','firma'],big:1});
+      if(m===6) out.push({d:shift(new Date(y,6,1)),t:'Daňové přiznání za rok '+(y-1)+' s daňovým poradcem',s:'Prodloužená lhůta při zastoupení poradcem',tags:['osvc','firma'],big:1});
+    }
+    return out.filter(x=>x.d>=from&&x.d<=to).sort((a,b)=>a.d-b.d);
+  }
+  const today=new Date();today.setHours(0,0,0,0);
+  const horizon=new Date(today);horizon.setMonth(horizon.getMonth()+9);
+  const ALL=deadlines(today,horizon);
+  function left(d){const n=Math.round((d-today)/864e5);return n===0?'dnes':n===1?'zítra':n<5?'za '+n+' dny':'za '+n+' dní'}
+  const list=$('#calList');
+  function render(f){
+    const rows=ALL.filter(x=>f==='all'||x.tags.includes(f)).slice(0,6);
+    list.innerHTML=rows.map(x=>{const n=Math.round((x.d-today)/864e5);return `<li class="dl glass"><span class="date"><b>${x.d.getDate()}</b><span>${MSHORT[x.d.getMonth()]}</span></span><span class="what"><b>${x.t}</b><span>${x.s} · do ${x.d.getDate()}. ${MONTHS[x.d.getMonth()]} ${x.d.getFullYear()}</span></span><span class="left${n<=7?' soon':''}">${left(x.d)}</span></li>`}).join('');
+  }
+  $$('.filters button').forEach(b=>b.addEventListener('click',()=>{$$('.filters button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render(b.dataset.f)}));
+  render('all');
+  $('#yr').textContent=today.getFullYear();
+
+  /* ---------- wizard ---------- */
+  const IC={
+    osvc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg>',
+    firma:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>',
+    spolek:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-9.3-9.2C1.4 8.4 3.6 5 7 5c2.1 0 3.6 1.2 5 3 1.4-1.8 2.9-3 5-3 3.4 0 5.6 3.4 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg>',
+    yes:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 8"/></svg>',
+    no:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    soon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    q:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 .5c0 1.5-2.5 2-2.5 3.5M12 17h.01"/></svg>'
+  };
+  const Q=[
+    {k:'type',q:'Kdo jste?',o:[['osvc','OSVČ, živnostník','Podnikám na živnostenský list',IC.osvc],['firma','Firma','s.r.o. nebo a.s.',IC.firma],['spolek','Spolek','Nezisková organizace',IC.spolek]]},
+    {k:'emp',q:'Máte zaměstnance?',o:[['ano','Ano','Potřebuji zpracovat mzdy',IC.yes],['plan','Zatím ne, ale plánuji','Chci nabírat v dohledné době',IC.soon],['ne','Ne','Pracuji sám nebo s partnery',IC.no]]},
+    {k:'dph',q:'Jste plátce DPH?',o:[['ano','Ano','Podávám přiznání k DPH',IC.yes],['ne','Ne','Nejsem registrovaný',IC.no],['nevim','Nevím','Rád bych to probral',IC.q]]}
+  ];
+  const ans={};let step=0;const wm=$('#wizMain'),dots=$$('.wiz-dots i');
+  function setDots(){dots.forEach((d,i)=>d.classList.toggle('on',i<=step))}
+  function drawQ(){
+    const s=Q[step];setDots();
+    wm.innerHTML=`<div class="wiz-anim" style="display:grid;gap:20px"><span class="wiz-step-label">Otázka ${step+1} ze 3</span><div class="wiz-q">${s.q}</div><div class="wiz-opts">${s.o.map(o=>`<button type="button" class="opt" data-v="${o[0]}"><span class="ic">${o[3]}</span><span>${o[1]}<small>${o[2]}</small></span></button>`).join('')}</div>${step?'<button type="button" class="wiz-back">← Zpět</button>':''}</div>`;
+    $$('.opt',wm).forEach(b=>b.addEventListener('click',()=>{ans[s.k]=b.dataset.v;step++;step<3?drawQ():drawR()}));
+    const bk=$('.wiz-back',wm);if(bk)bk.addEventListener('click',()=>{step--;drawQ()});
+  }
+  function drawR(){
+    step=3;setDots();
+    const r=[];let svc,sum;
+    if(ans.type==='osvc'){svc='Daňová evidence (OSVČ)';r.push(['Daňová evidence','Evidence příjmů a výdajů, daňové přiznání a přehledy pro ČSSZ a zdravotní pojišťovnu.',1])}
+    if(ans.type==='firma'){svc='Vedení účetnictví (s.r.o., a.s.)';r.push(['Vedení účetnictví','Kompletní účetnictví, daňové přiznání a účetní závěrka pro obchodní rejstřík.',1])}
+    if(ans.type==='spolek'){svc='Účetnictví neziskové organizace';r.push(['Účetnictví neziskové organizace','Účetnictví spolku podle pravidel pro neziskový sektor.',1])}
+    if(ans.emp==='ano')r.push(['Mzdové účetnictví','Mzdy, odvody, hlášení pro ČSSZ a pojišťovny, roční zúčtování.']);
+    if(ans.emp==='plan')r.push(['Mzdy, až přijmete prvního zaměstnance','Pomůžeme s přihláškami na úřady a dokumenty pro zaměstnance.']);
+    if(ans.dph==='ano')r.push(['Přiznání k DPH a kontrolní hlášení','Pohlídáme termíny a podáme za vás.']);
+    if(ans.dph==='nevim')r.push(['Probereme DPH','Na konzultaci spolu zjistíme, jestli se vás registrace k DPH týká.']);
+    r.push(['Doklady bez starostí','Vyzvedneme je, nebo je pošlete elektronicky. A s úřady jednáme za vás.']);
+    const lab={osvc:'OSVČ',firma:'firma',spolek:'spolek'}[ans.type];
+    sum=`Dobrý den, jsem ${lab}. Zaměstnance: ${{ano:'ano',ne:'ne',plan:'zatím ne, plánuji'}[ans.emp]}. Plátce DPH: ${{ano:'ano',ne:'ne',nevim:'nevím'}[ans.dph]}. Mám zájem o nezávaznou konzultaci.`;
+    wm.innerHTML=`<div class="wiz-anim" style="display:grid;gap:18px"><span class="wiz-step-label">Doporučení pro vás</span><div class="wiz-q">S tímhle vám pomůžeme.</div><ul class="res-list">${r.map(x=>`<li${x[2]?' class="main"':''}><b>${x[0]}</b><span>${x[1]}</span></li>`).join('')}</ul><div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button type="button" class="btn btn-dark" id="wizSend">Poslat poptávku s tímto výběrem</button><button type="button" class="wiz-back" id="wizAgain">Začít znovu</button></div></div>`;
+    $('#wizAgain').addEventListener('click',()=>{step=0;drawQ()});
+    $('#wizSend').addEventListener('click',()=>{
+      $('#f-svc').value=svc;$('#f-msg').value=sum;
+      const f=$('#kontakt');lenis?lenis.scrollTo(f,{offset:-90}):f.scrollIntoView({behavior:reduce?'auto':'smooth'});
+      setTimeout(()=>$('#f-name').focus({preventScroll:true}),900);
+    });
+  }
+  drawQ();
+
+  /* form (demo: no sending) */
+  $('#form').addEventListener('submit',e=>{
+    e.preventDefault();const err=$('#f-err');
+    const n=$('#f-name').value.trim(),p=$('#f-phone').value.trim(),m=$('#f-mail').value.trim();
+    if(!n){err.textContent='Vyplňte prosím své jméno.';err.hidden=false;$('#f-name').focus();return}
+    if(!p&&!m){err.textContent='Nechte nám prosím telefon nebo e-mail, ať se vám můžeme ozvat.';err.hidden=false;$('#f-phone').focus();return}
+    err.hidden=true;
+    e.target.innerHTML=`<div class="sent wiz-anim"><span class="svc-ic">${IC.yes}</span><b>Děkujeme, ${n.split(' ')[0]}.</b><p style="margin:0">Vaši zprávu jsme přijaly a brzy se vám ozveme.</p><small>Ukázka nového webu: zpráva se zatím nikam neodesílá.</small></div>`;
+  });
+})();
+</script>
+</body>
+</html>
